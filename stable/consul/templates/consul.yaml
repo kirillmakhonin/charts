@@ -78,8 +78,10 @@ metadata:
     release: {{ .Release.Name | quote }}
     chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     component: "{{ .Release.Name }}-{{ .Values.Component }}"
+{{ toYaml .Values.service.labels | indent 4 }}
   annotations:
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+{{ toYaml .Values.service.annotations | indent 4 }}
 spec:
   ports:
   - name: http
